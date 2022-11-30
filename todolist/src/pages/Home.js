@@ -7,6 +7,7 @@ import Menu from '@mui/material/Menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Button } from '@mui/material';
 
 
 const Home = () => {
@@ -27,20 +28,26 @@ const Home = () => {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Hi
         </Typography>
-        <IconButton
-          className='accountBtn' onClick={handleMenu}
-          aria-haspopup="true" aria-label="account" aria-controls='accountMenu'
-        >
-          <AccountCircle />
-        </IconButton>
-        <Menu
-          id="accountMenu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}
-          keepMounted
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleChange}>Logout</MenuItem>
-        </Menu>
+        {
+          auth ? (
+          <div>
+            <IconButton
+              className='accountBtn' onClick={handleMenu}
+              aria-haspopup="true" aria-label="account" aria-controls='accountMenu'
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="accountMenu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}
+              keepMounted
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick= {() => {setAuth(false)}}>Logout</MenuItem>
+            </Menu>
+          </div>
+          ) : <Button onClick={() => {setAuth(true)}}>Login</Button>
+        }
       </Toolbar>
     </AppBar>
   )
