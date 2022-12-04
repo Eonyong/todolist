@@ -1,5 +1,6 @@
-import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Box, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import React from "react";
+import NavigationBar from "../components/navigationBar";
 
 
 const ToDoList = () => {
@@ -15,43 +16,41 @@ const ToDoList = () => {
         createData('Cupcake', 305, 3.7, 67, 4.3),
         createData('Gingerbread', 356, 16.0, 49, 3.9),
       ];
-    // const rows = [
-    //     {'name': 'Frozen yoghurt', 'calories': 159, 6.0, 24, 4.0},
-    //     {'name': 'Ice cream sandwich', 'calories': 237, 9.0, 37, 4.3},
-    //     {'name': 'Eclair', 'calories': 262, 16.0, 24, 6.0},
-    //     {'name': 'Cupcake', 'calories': 305, 3.7, 67, 4.3},
-    //     {'name': 'Gingerbread', 'calories': 356, 16.0, 49, 3.9},
-    //   ];
-
+    
     return(
-        <Paper className="todolist">
-            <Table className="todotable">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell numeric>Calories</TableCell>
-                        <TableCell numeric>Fat (g)</TableCell>
-                        <TableCell numeric>Carbs (g)</TableCell>
-                        <TableCell numeric>Protein (g)</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map(row => {
-                        return (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell numeric>{row.calories}</TableCell>
-                                <TableCell numeric>{row.fat}</TableCell>
-                                <TableCell numeric>{row.carbs}</TableCell>
-                                <TableCell numeric>{row.protein}</TableCell>
+        <>
+            <NavigationBar />
+            <Box component="main">
+                <Paper className="todolist">
+                    <Table className="todotable">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Dessert (100g serving)</TableCell>
+                                <TableCell numeric>Calories</TableCell>
+                                <TableCell numeric>Fat (g)</TableCell>
+                                <TableCell numeric>Carbs (g)</TableCell>
+                                <TableCell numeric>Protein (g)</TableCell>
                             </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-        </Paper>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map(row => {
+                                return (
+                                    <TableRow key={row.id}>
+                                        <TableCell component="th" scope="row">
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell numeric>{row.calories}</TableCell>
+                                        <TableCell numeric>{row.fat}</TableCell>
+                                        <TableCell numeric>{row.carbs}</TableCell>
+                                        <TableCell numeric>{row.protein}</TableCell>
+                                    </TableRow>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </Paper>
+            </Box>
+        </>
     )
 };
 
