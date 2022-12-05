@@ -12,18 +12,30 @@ router.post("/", (req, res) => {
   .catch(err => res.status(500).send(err))
 })
 
-router.put("/todoid/:todoid", (req, res) => {
-  User.updateByUserid(req.params.userid)
+router.get("/userid/:userid", (req, res) => {
+  User.findOneByUserid(req.params.userid)
+  .then(user => {
+    if (!user) return res.status(404).send({ err: "User not found" })
+    res.send(`findOne successfully: ${user}`)
+  })
+  .catch(err => res.status(500).send(err))
+})
+
+router.put("/userid/:userid", (req, res) => {
+  User.updateByUserid(req.params.userid, req.body)
+  .then(user => res.send(user))
+  .catch(err => res.send(500).send(err))
+})
+
+router.delete("/userid/:userid", (req, res) => {
+  User.deleteByUserid(req.params.userid)
+  .then(() => res.sendStatus(200))
+  .catch(err => res.status(500).send(err))
 })
 
 router.get("/about", (req, res) => {
   res.render("about")
 })
 
-router.get("/:name", (req, res) => {
-  User.find({ name: req.params.name }, (err, user) => {
-    res.render("main", { user: "user" })
-  })
-})
 
 module.exports = router
