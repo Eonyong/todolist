@@ -1,8 +1,10 @@
+require("dotenv")
 const mongoose = require('mongoose')
+const { MONGO_URI } = process.env
 
 module.exports = () => {
   function connect() {
-    mongoose.connect('mongodb+srv://root:1234@testdb.4sdkjek.mongodb.net/?retryWrites=true&w=majority', e => {
+    mongoose.connect(MONGO_URI, e => {
       if (e) console.error("mongodb connnection Error", e)
       else console.log("mongodb is cconnected!!")
     })
