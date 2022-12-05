@@ -1,15 +1,10 @@
 const mongoose = require("mongoose")
 const userSchema = new mongoose.Schema({
-  userid: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  pw: { type: String, required: true },
-  data: Object
+  userid: { type: String, require: true },
+  email: { type: String, require: true, unique: true },
+  pw: { type: String, require: true },
 })
 
-userSchema.statics.create = (payload) => {
-  const user = new this(payload)
-  return user.save()
-}
 
 userSchema.statics.findAll = () => this.find({})
 
