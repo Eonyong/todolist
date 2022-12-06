@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const path = require('path')
 const bodyparser = require("body-parser")
@@ -22,7 +23,11 @@ mongoose.Promise = global.Promise;
 
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../todo/build/index"))
+  res.render("index")
 })
 
 app.listen(PORT, () => console.log("Server is connected!!"))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../todo/build/index.html"))
+})
