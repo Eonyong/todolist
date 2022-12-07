@@ -17,13 +17,14 @@ db()
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "../todo/build")))
 app.use(bodyparser.json())
+// url에 /user 를 붙이고 그다음에 routes에 있는 url 추가 작성
 app.use("/user", user)
 
 mongoose.Promise = global.Promise;
 
 
 app.get("/", (req, res) => {
-  res.render("index")
+  res.sendFile(path.join(__dirname, "../todo/build/index.html"))
 })
 
 app.listen(PORT, () => console.log("Server is connected!!"))
