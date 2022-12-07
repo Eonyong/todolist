@@ -1,7 +1,8 @@
 import React from "react"
 import { NavLink } from "react-router-dom";
 import styled from "styled-components"
-import NavbarStyles from "./Navbar.styles";
+import NavbarStyles from "./Navbar.styles"
+import { Menu } from "@styled-icons/evaicons-solid/Menu";
 
 const Nav = styled.nav`
   height: 60px;
@@ -49,9 +50,17 @@ const Button = styled.button`
   padding: 0.25em 1em;
   border: 2px solid ${NavbarStyles.mainButtonColor};
   border-radius: 3px;
+  &:hover{
+    background-color: ${NavbarStyles.mainButtonColor};
+  }
   a {
     text-decoration: none;
   }
+`;
+
+const MenuIcon = styled(Menu)`
+  height: 30px;
+  margin: auto 0 auto 5px;
 `;
 
 
@@ -68,7 +77,7 @@ const Navbar = () => {
 
   return(
     <Nav>
-      <p>hihi</p>
+      <MenuIcon />
       <Lists>{ lists }</Lists>
       <Button>
         <NavLink to="/login">
