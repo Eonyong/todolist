@@ -52,9 +52,7 @@ const Navbar = () => {
 
   return(
     <Nav>
-      <Lists>
-        { lists }
-      </Lists>
+      <Lists>{ lists }</Lists>
     </Nav>
   )
 }
