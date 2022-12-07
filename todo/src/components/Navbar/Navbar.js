@@ -41,19 +41,19 @@ const ListItems = styled.li`
 
 const Navbar = () => {
   
+  const items = ["", "Login"]
+  const lists = items.map((item) => (
+    <ListItems>
+      <NavLink to={ item } className={({ isActive }) => isActive ? "active" : "not"}>
+        { item ? item : "Home" }
+      </NavLink>
+    </ListItems>
+  ))
+
   return(
     <Nav>
       <Lists>
-        <ListItems>
-          <NavLink to="/" className={({ isActive }) => isActive ? "active" : "not"}>
-            Home
-          </NavLink>
-        </ListItems>
-        <ListItems>
-          <NavLink to="/login" className={({ isActive }) => isActive ? "selected" : "not"}>
-            Login
-          </NavLink>
-        </ListItems>
+        { lists }
       </Lists>
     </Nav>
   )
