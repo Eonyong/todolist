@@ -2,22 +2,26 @@ import React from "react"
 import { NavLink } from "react-router-dom";
 import styled from "styled-components"
 import NavbarStyles from "./Navbar.styles"
-import { Menu } from "@styled-icons/evaicons-solid/Menu";
+
+// import { Menu } from "@styled-icons/evaicons-solid/Menu";
 
 const Nav = styled.nav`
-  height: 60px;
-  width: 100%;
+  max-height: 60px;
+  max-width: 100%;
   text-align: center;
   align-content: center;
+  position: relative;
   display: flex;
-  justify-content: space-around;
+  margin: 0 26px;
+  justify-content: space-between;
 `;
 
 const Lists = styled.ul`
   list-style: none;
+  float: left;
+  text-align: left;
   height: 60px;
-  margin: auto;
-  padding: 0;
+  margin: 24px 30px 0 0;
 `;
 
 const ListItems = styled.li`
@@ -27,8 +31,6 @@ const ListItems = styled.li`
     font-family: ${NavbarStyles.mainFont};
     display: block;
     position: relative;
-    height: 60px;
-    line-height: 65px;
     font-size: 1rem;
     font-wieght: 500;
     padding: 0 0px;
@@ -37,37 +39,43 @@ const ListItems = styled.li`
     color ${NavbarStyles.mainTextColor};
   }
   .active {
-    border-bottom: solid 3px ${NavbarStyles.mainOrangeColor};
+    border-bottom: 2px solid ${NavbarStyles.mainOrangeColor};
   }
 `;
 
-const Button = styled.button`
+const Button = styled.text`
   font-size: 1rem;
   font-family: ${NavbarStyles.mainFont};
   background-color: white;
   color: ${NavbarStyles.mainButtonColor};
   margin: auto 0 auto 0;
-  padding: 0.25em 1em;
-  border: 2px solid ${NavbarStyles.mainButtonColor};
-  border-radius: 3px;
+  display: flex;
   &:hover{
-    background-color: ${NavbarStyles.mainButtonColor};
+    color: ${NavbarStyles.mainButtonColor};
   }
   a {
+    margin: 0.5rem;
     text-decoration: none;
+    align-self: center;
   }
 `;
 
-const MenuIcon = styled(Menu)`
-  height: 30px;
-  margin: auto 0 auto 5px;
-`;
+// const MenuIcon = styled(Menu)`
+//   height: 30px;
+//   margin: auto 0 auto 5px;
+// `;
+// interface DialogProps {
+//   children?: ReactNode;
+//   isOpen: Boolean;
+// }
 
 
 const Navbar = () => {
   
   const items = ["", "about"]
-  const lists = items.map((item) => (
+
+
+  const lists = (props) => props.map((item) => (
     <ListItems>
       <NavLink to={ item } className={({ isActive }) => isActive ? "active" : "not"}>
         { item ? item : "Home" }
@@ -76,15 +84,17 @@ const Navbar = () => {
   ))
 
   return(
-    <Nav>
-      <MenuIcon />
-      <Lists>{ lists }</Lists>
-      <Button>
-        <NavLink to="/login">
-          Login
-        </NavLink>
-      </Button>
-    </Nav>
+    <>
+      <Nav>
+        {/* <MenuIcon /> */}
+        <Lists>{ lists(items)  }</Lists>
+        <Button>
+          <NavLink to="/login" >Login</NavLink>
+          <p>/</p>
+          <NavLink to="/signup">SignUp</NavLink>
+        </Button>
+      </Nav>
+    </>
   )
 }
 

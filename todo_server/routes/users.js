@@ -4,7 +4,7 @@ const User = require("../models/User")
 
 
 router.post("/register", (req, res) => {
-  console.log(req.body, " -> hihi")
+  console.log(req.body)
   const user = new User(req.body)
 
   user.save((err, userInfo) => {
