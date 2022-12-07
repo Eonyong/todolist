@@ -4,9 +4,12 @@ import styled from "styled-components"
 import NavbarStyles from "./Navbar.styles";
 
 const Nav = styled.nav`
-  height: 30px;
+  height: 60px;
   width: 100%;
   text-align: center;
+  align-content: center;
+  display: flex;
+  justify-content: space-around;
 `;
 
 const Lists = styled.ul`
@@ -37,11 +40,24 @@ const ListItems = styled.li`
   }
 `;
 
+const Button = styled.button`
+  font-size: 1rem;
+  font-family: ${NavbarStyles.mainFont};
+  background-color: white;
+  color: ${NavbarStyles.mainButtonColor};
+  margin: auto 0 auto 0;
+  padding: 0.25em 1em;
+  border: 2px solid ${NavbarStyles.mainButtonColor};
+  border-radius: 3px;
+  a {
+    text-decoration: none;
+  }
+`;
 
 
 const Navbar = () => {
   
-  const items = ["", "Login"]
+  const items = ["", "about"]
   const lists = items.map((item) => (
     <ListItems>
       <NavLink to={ item } className={({ isActive }) => isActive ? "active" : "not"}>
@@ -52,7 +68,13 @@ const Navbar = () => {
 
   return(
     <Nav>
+      <p>hihi</p>
       <Lists>{ lists }</Lists>
+      <Button>
+        <NavLink to="/login">
+          Login
+        </NavLink>
+      </Button>
     </Nav>
   )
 }
