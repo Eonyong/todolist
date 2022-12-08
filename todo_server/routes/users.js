@@ -1,11 +1,12 @@
 const express = require("express")
+const hashing = require("../config/hashing")
 const router = express.Router()
 const User = require("../models/User")
 
 
 router.post("/register", (req, res) => {
-  console.log(req.body)
   const user = new User(req.body)
+  user.password = hashing.enc(user.id, user.password, "eonyong")
 
   user.save((err, userInfo) => {
     if (err) return res.json({ err })

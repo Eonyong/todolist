@@ -60,16 +60,6 @@ const Button = styled.text`
   }
 `;
 
-// const MenuIcon = styled(Menu)`
-//   height: 30px;
-//   margin: auto 0 auto 5px;
-// `;
-// interface DialogProps {
-//   children?: ReactNode;
-//   isOpen: Boolean;
-// }
-
-
 const Navbar = () => {
   
   const items = ["", "about"]

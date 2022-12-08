@@ -4,12 +4,12 @@ module.exports = {
   entry: "./src/index.js",
   mode : 'none',
   resolve:{
-    extensions:['.js','.jsx']
+    extensions:['.js','.jsx', '.tsx', 'ts']
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.tsx?/,
         loader:'babel-loader', 
         options:{
           presets:['@babel/preset-env','@babel/preset-react'],
