@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components"
 import NavbarStyles from "./Navbar.styles"
 
-// import { Menu } from "@styled-icons/evaicons-solid/Menu";
-
 const Nav = styled.nav`
   max-height: 60px;
   max-width: 100%;
@@ -61,14 +59,16 @@ const Button = styled.text`
 `;
 
 const Navbar = () => {
-  
-  const items = ["", "about"]
 
+  const ls = [
+    {id: 1, name: ""},
+    {id: 2, name: "about"}
+  ]
 
-  const lists = (props) => props.map((item) => (
-    <ListItems>
-      <NavLink to={ item } className={({ isActive }) => isActive ? "active" : "not"}>
-        { item ? item : "Home" }
+  const lists = props => props.map(item => (
+    <ListItems key={item.id}>
+      <NavLink to={ item.name } className={({ isActive }) => isActive ? "active" : "not"}>
+        { item.name ? item.name : "Home" }
       </NavLink>
     </ListItems>
   ))
@@ -77,9 +77,9 @@ const Navbar = () => {
     <>
       <Nav>
         {/* <MenuIcon /> */}
-        <Lists>{ lists(items)  }</Lists>
+        <Lists>{ lists(ls)  }</Lists>
         <Button>
-          <NavLink to="/login" >Login</NavLink>
+          <NavLink to="/signin" >Login</NavLink>
           <p>/</p>
           <NavLink to="/signup">SignUp</NavLink>
         </Button>

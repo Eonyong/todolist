@@ -2,13 +2,14 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink, useNavigate } from 'react-router-dom';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import axios from 'axios';
 
 const theme = createTheme();
@@ -23,12 +24,11 @@ const textField = (props, handleChange) => (
   />
 )
 
-export default function SignUp() {
+export default function SignIn() {
+
   const navigator = useNavigate()
   
   const [values, setValues] = React.useState({
-    firstname: "",
-    lastname: "",
     email: "",
     password: "",
   })
@@ -46,13 +46,11 @@ export default function SignUp() {
       "/user/register",
       values
     )
-    .then((res) => {
-      console.log(res.data)
-      if (res.data.success) {
-        navigator("/")
-      }
+    .then((res) => console.log(res.data))
+    .catch(e => {
+      console.error(e)
+      navigator("/")
     })
-    .catch(e => console.error(e))
   }
 
   return (
@@ -70,35 +68,31 @@ export default function SignUp() {
             <PersonAddIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign in
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                { textField("firstName", handleChange) }
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                { textField("lastName", handleChange) }
-              </Grid>
-              <Grid item xs={12}>
-                { textField("email", handleChange) }
-              </Grid>
-              <Grid item xs={12}>
-                { textField("password", handleChange) }
-              </Grid>
-            </Grid>
+
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            {textField("email", handleChange)}
+
+            {textField("password", handleChange)}
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container>
+              <Grid item xs>
+                <Link href="/#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
               <Grid item>
-                <NavLink to="/signin" variant="body2">
-                  Already have an account? Sign in
+                <NavLink to="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
                 </NavLink>
               </Grid>
             </Grid>

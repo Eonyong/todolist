@@ -9,8 +9,8 @@ router.post("/register", (req, res) => {
   user.password = hashing.enc(user.id, user.password, "eonyong")
 
   user.save((err, userInfo) => {
-    if (err) return res.json({ err })
-    else return res.status(200).json({ success: true, userInfo })
+    if (err) return res.json({ success: false, err })
+    else return res.status(200).json({ success: true })
   })
 
 })
