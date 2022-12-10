@@ -13,10 +13,20 @@ import axios from 'axios';
 
 const theme = createTheme();
 
+const ValidateEmail = mail => {
+  if (String(mail).match(/^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm))
+  {
+    return true
+  }
+    alert("You have entered an invalid email address!")
+    return false
+}
+
 const textField = (props, handleChange) => (
   <TextField
     margin="normal"
-    required fullWidth autoFocus
+    required fullWidth
+    type={props}
     onChange={handleChange}
     id={props} label={props}
     name={props} autoComplete={props}
@@ -42,17 +52,19 @@ export default function SignUp() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    axios.post(
-      "/user/register",
-      values
-    )
-    .then((res) => {
-      console.log(res.data)
-      if (res.data.success) {
-        navigator("/")
-      }
-    })
-    .catch(e => console.error(e))
+    if (ValidateEmail(values.email)) {
+      axios.post(
+        "/user/register",
+        values
+      )
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.success) {
+          navigator("/")
+        }
+      })
+      .catch(e => console.error(e))
+    }
   }
 
   return (

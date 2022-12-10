@@ -18,6 +18,7 @@ const textField = (props, handleChange) => (
   <TextField
     margin="normal"
     required fullWidth autoFocus
+    type={props}
     onChange={handleChange}
     id={props} label={props}
     name={props} autoComplete={props}
@@ -42,8 +43,8 @@ export default function SignIn() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    axios.post(
-      "/user/register",
+    axios.get(
+      "/user",
       values
     )
     .then((res) => console.log(res.data))
