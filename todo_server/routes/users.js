@@ -3,12 +3,14 @@ const hashing = require("../config/hashing")
 const router = express.Router()
 const User = require("../models/User")
 const jwt = require('jsonwebtoken');
+const { auth } = require("../authmiddleware");
 const SECRET_KEY = 'MY-SECRET-KEY';
 
+const pwEncoding = (id, password) => hashing.enc(id, password, "eonyong")
 
 router.post("/register", (req, res) => {
   const user = new User(req.body)
-  user.password = hashing.enc(user.id, user.password, "eonyong")
+  user.password = pwEncoding(user.id, user.password, "eonyong")
 
   let token = jwt.sign({
     type: "JWT",
@@ -24,17 +26,18 @@ router.post("/register", (req, res) => {
     else return res.status(200).json({ 
       success: true,
       message: '토큰이 발급되었습니다.',
+      data: userInfo,
       token: token,
     })
   })
 
 })
 
-router.get("/userid/:userid", (req, res) => {
-  User.findOneByUserid(req.params.userid)
+router.get("/userid/:userid", async (req, res) => {
+  User.findOne(req.params)
   .then(user => {
     if (!user) return res.status(404).send({ err: "User not found" })
-    res.send(`findOne successfully: ${user}`)
+    res.send(`findOne successfully: \n${user}`)
   })
   .catch(err => res.status(500).send(err))
 })

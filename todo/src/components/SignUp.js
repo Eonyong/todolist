@@ -18,7 +18,6 @@ const ValidateEmail = mail => {
   {
     return true
   }
-    alert("You have entered an invalid email address!")
     return false
 }
 
@@ -64,6 +63,8 @@ export default function SignUp() {
         }
       })
       .catch(e => console.error(e))
+    } else {
+      alert("You have entered an invalid email address!")
     }
   }
 

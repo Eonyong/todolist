@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import UserLogin from '../features/Users/UserLogin';
+import { userLogin } from '../features/Users/UserLogin';
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
-    userlogin: UserLogin,
-  },
-});
+    userlogin: userLogin,
+  }
+})

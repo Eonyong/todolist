@@ -1,23 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
-const userLogin = createSlice({
-  name: "userlogin",
-  initialState: {
-    value: false,
-  },
+const initialState = {
+  value: false,
+}
+
+export const userLogin = createSlice({
+  name: 'logintf',
+  initialState,
   reducers: {
-    userlogin(state, action) {
+    setlogin: (state, action) => {
       state.value = true
     },
-    userlogout(state, action) {
+    setlogout: (state, action) => {
       state.value = false
-    },
-    
+    }
   }
 })
 
-const { actions, reducer } = userLogin
+export const { setlogin, setlogout } = userLogin.actions
 
-export const { userlogin, userlogout } = actions
+export const showlogin = state => state.logintf.value
 
-export default reducer
+export default userLogin.reducer

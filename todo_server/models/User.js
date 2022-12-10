@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.statics.findAll = () => this.find({})
 
-userSchema.statics.findOneByUserid = (userid) => this.findOne({ userid })
+userSchema.statics.findOneByUserid = (userid) => this.findOne({ id: userid })
 
 userSchema.statics.updateByUserid = (userid, payload) => this.findOneAndUpdate({ userid }, payload, { new: true })
 

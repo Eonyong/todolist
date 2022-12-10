@@ -44,12 +44,13 @@ export default function SignIn() {
   const handleSubmit = e => {
     e.preventDefault()
     axios.get(
-      "/user",
+      "/user/userid/:userid",
       values
     )
-    .then((res) => console.log(res.data))
+    .then(res => {
+    })
     .catch(e => {
-      console.error(e)
+      console.error(e.data)
       navigator("/")
     })
   }
