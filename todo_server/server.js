@@ -24,7 +24,6 @@ app.use("/user", user)
 
 mongoose.Promise = global.Promise;
 
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../todo/build/index.html"))
 })
